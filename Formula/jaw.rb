@@ -1,10 +1,10 @@
-# jaw's Homebrew formula, for Formula/jaw.rb in its tap. scripts/release.sh fills in url and sha256
+# jaw's Homebrew formula, for Formula/jaw.rb in its tap. mise run release fills in url and sha256
 # for a tagged release and prints the result.
 class Jaw < Formula
   desc "WhatsApp in a terminal, fast, from the keyboard"
   homepage "https://github.com/pdcgomes/jaw"
-  url "https://github.com/pdcgomes/jaw/releases/download/v0.1.0/jaw-0.1.0.tar.gz"
-  sha256 "05fa8efae22617dca7e0cff0f13f69c3985858c023c302694671b67f051db10c"
+  url "https://github.com/pdcgomes/jaw/releases/download/v0.1.1/jaw-0.1.1.tar.gz"
+  sha256 "542dfd65d1fc783d5f95d0ec8282384ac275468f2da9b26c065f05f8c02cbc69"
   license "MIT"
   head "https://github.com/pdcgomes/jaw.git", branch: "main"
 
@@ -21,7 +21,8 @@ class Jaw < Formula
   end
 
   def install
-    system "make", "install", "PREFIX=#{prefix}"
+    ENV["PREFIX"] = prefix.to_s
+    system "mise/tasks/install"
   end
 
   def caveats
